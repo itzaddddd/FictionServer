@@ -6,8 +6,6 @@ export const testFiction = async (): Promise<string> => {
     return 'Test Fiction Gene API'
 }
 export const predictFiction = async (request: IPredict): Promise<any> => {
-    console.log('Request: ',request)
-    console.log('Type : ',typeof request)
     const config = {
         headers: {
             'Content-Type': 'application/json;charset=UTF-8'
