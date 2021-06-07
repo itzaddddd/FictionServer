@@ -1,16 +1,24 @@
-import * as tf from '@tensorflow/tfjs-node'
 import { IPredict } from '../interfaces/input.interface'
-
-const MODEL_PATH = 'file://src/tensorflow/model.json'
+import { model_url } from '../constants/constants'
+import axios from 'axios'
 
 export const testFiction = async (): Promise<string> => {
     return 'Test Fiction Gene API'
 }
 export const predictFiction = async (request: IPredict): Promise<any> => {
-    const model = await tf.loadLayersModel(MODEL_PATH)
-    const inputValue = request.input
-    const input = tf.tensor1d([inputValue])
-    const predict = model.predict(input) as tf.Tensor
-    const value = predict.dataSync()[0]
-    return value
+    console.log('Request: ',request)
+    console.log('Type : ',typeof request)
+    const config = {
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8'
+        }
+    }
+    const response = await axios({
+        method: 'POST', 
+        url: model_url,
+        data: request,
+        headers: config.headers
+    })
+    const { data } = response
+    return data
 }
