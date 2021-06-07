@@ -18,6 +18,7 @@ export default class fictionController{
 
     @Post('/')
     async predictFiction(@Ctx() ctx: Context, @Body() request: IPredict){
+        console.log('C Req : ',request)
         const result = await predictFiction(request)
         if(!result) httpInternalServerError(ctx, {msg: 'Server Error'})
         httpOk(ctx, result)
