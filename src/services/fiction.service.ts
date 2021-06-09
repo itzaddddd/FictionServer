@@ -8,7 +8,10 @@ export const testFiction = async (): Promise<string> => {
 export const predictFiction = async (request: IPredict): Promise<any> => {
     const config = {
         headers: {
-            'Content-Type': 'application/json;charset=UTF-8'
+            'Content-Type': 'application/json;charset=UTF-8',
+            'Access-Control-Allow-Origin':'*',
+            'Access-Control-Allow-Headers':'*',
+            'Access-Control-Allow-Methods':'*',
         }
     }
     const response = await axios({
